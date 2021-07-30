@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirtualCompany</title>
+    <style>
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+        
+        img {
+            width: 200px;
+            height: auto;
+            animation-name: logo_anim;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes logo_anim {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="../Images/logo.png" alt="Logo">
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script type="text/javascript" src="../JS/firebase_config.js"></script>
+
+    <script>
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user)
+            {
+                console.log(user);
+                goToMain();
+            }
+            else
+            {
+                console.log(user);
+                goToSignUp();
+            }
+        });
+
+        function goToMain() {
+            window.open("main.html", "_self");
+        }
+
+        function goToSignUp() {
+            window.open("signup.html", "_self");
+        }
+    </script>
+
+</body>
+
+</html>

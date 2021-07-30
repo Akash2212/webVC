@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+
+    <link type="text/css" rel="stylesheet" href="../CSS/signup_style.css">
+
+</head>
+
+<body>
+    <div class="container" id="contain">
+        <div class="signup-layout">
+            <div class="logo"><img src="../Images/logo.png" alt="Logo"></div>
+            <div class="user_name"><input id="userName" type="text" placeholder="Enter user name here.."></div>
+            <div class="email"><input id="emailID" type="text" placeholder="Enter email here.."></div>
+            <div class="password"><input id="passw" type="password" placeholder="Enter password here.."></div>
+            <div class="signup_button"><button class="signup" onclick="buttonClicked(event)">Signup</button></div>
+            <div class="text_div">
+                <p class="forgot">Forgot password</p>
+                <p class="account"><a href="signin.html">Already have an account?</a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script type="text/javascript" src="../JS/firebase_config.js"></script>
+
+    <script>
+        function buttonClicked(event) {
+
+            console.log("Button clicked");
+            var user_name = document.getElementById("userName").value;
+            var email = document.getElementById("emailID").value;
+            var password = document.getElementById("passw").value;
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    console.log("new account created");
+                    window.open("main.html", "_self");
+                    console.log(user);
+                }
+            });
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .catch((error) => {
+                    console.log("Authentication failed");
+                });
+        }
+    </script>
+
+</body>
+
+</html>

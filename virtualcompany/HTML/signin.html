@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signin</title>
+
+    <link type="text/css" rel="stylesheet" href="../CSS/signin_style.css">
+
+</head>
+
+<body>
+    <div class="container" id="contain">
+        <h1 id="hello"> Hello user</h1>
+        <div class="signup-layout">
+            <div class="logo"><img src="../Images/logo.png" alt="Logo"></div>
+            <div class="email"><input id="emailID" type="text" placeholder="Enter email here.."></div>
+            <div class="password"><input id="passw" type="password" placeholder="Enter password here.."></div>
+            <div class="signin_button"><button class="signin" onclick="buttonClicked(event)">Signin</button></div>
+            <div class="text_div">
+                <p class="forgot">Forgot password</p>
+                <p class="account"><a href="signup.html">Don't have an account?</a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script type="text/javascript" src="../JS/firebase_config.js"></script>
+
+    <script>
+        function buttonClicked(event) {
+
+            console.log("Button clicked");
+            var email = document.getElementById("emailID").value;
+            var password = document.getElementById("passw").value;
+
+            firebase.auth().onAuthStateChanged((user) => {
+                //window.open("main.html");
+                if(user)
+                {
+                    console.log("signed in");
+                    console.log(user);
+                }
+            });
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+
+            .catch((error) => {
+                console.log("Authentication failed");
+            });
+
+
+
+        }
+    </script>
+
+</body>
+
+</html>

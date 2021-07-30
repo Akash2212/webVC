@@ -1,0 +1,114 @@
+body {
+    background-color: #777;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  */
+}
+
+.signup-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: #2ca7e0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px white;
+}
+
+.logo {
+    padding: 10px;
+}
+
+.signup-layout img {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
+
+.email {
+    padding: 10px;
+}
+
+.email input {
+    padding: 5px;
+    border-radius: 10px;
+    width: 200px;
+    height: auto;
+    border: none;
+    outline: none;
+}
+
+.password {
+    padding: 10px;
+}
+
+.password input {
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.signin_button {
+    padding: 10px;
+}
+
+.signin_button button {
+    border-radius: 15px;
+    width: 100px;
+    background-color: #1d7096;
+    padding: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.text_div {
+    display: flex;
+    width: 400px;
+    background-color: aqua;
+    flex-direction: row;
+}
+
+.forgot {
+    text-decoration: solid;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    padding-left: 5px;
+}
+
+.account {
+    text-decoration: solid;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    padding-right: 5px;
+}
+
+.account a {
+    text-decoration: none;
+}
+
+.account a:link {
+    color: black;
+}
+
+.account a:visited {
+    color: black;
+}
+
+.account a:hover {
+    color: white;
+}
