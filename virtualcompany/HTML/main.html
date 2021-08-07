@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
@@ -26,9 +27,9 @@
             </div>
             <div class="tabs">
                 <button class="tabLinks" onclick="openContent(event,'home')">Home</button>
-                <button class="tabLinks" id="defaultOpen" onclick="openContent(event,'chats')">Chats</button>
+                <button class="tabLinks" onclick="openContent(event,'chats')">Chats</button>
                 <button class="tabLinks" onclick="openContent(event,'orders')">Orders</button>
-                <button class="tabLinks" onclick="openContent(event,'products')">Products</button>
+                <button class="tabLinks" id="defaultOpen" onclick="openContent(event,'products')">Products</button>
             </div>
             <div id="settingsDiv">
                 <i class="fa fa-gear"></i>
@@ -51,7 +52,15 @@
                     <i id="backBtn" class="fa fa-arrow-left"></i>
                     <p id="companyName"></p>
                 </div>
-                <div id="footer">
+                <div id="center">
+                    <!-- <div id="messageRight">
+                        <p id="msgRight">Hi</p>
+                    </div>
+                    <div id="messageLeft">
+                        <p id="msgLeft">Hello</p>
+                    </div> -->
+                </div>
+                <div class="footer">
                     <input id="messageInput" type="text " name="message " placeholder="Type message here.. ">
                     <i id="sendIcon" class="material-icons ">send</i>
                 </div>
@@ -67,39 +76,89 @@
 
                 </div>
             </div>
-            <div id="products " class="tabContent ">
-                <div id="productsContainer ">
-                    <div id="plus "> </div>
-                </div>
+            <div id="products" class="tabContent">
+
+                <div id="chlm">Hel</div>
+
+                <button id="plus" onclick="openFile(dispFile)"><i class="fa fa-plus" style="font-size:36px; color: white;"></i> </button>
+
             </div>
         </div>
-        <div class="lastContainer ">
+        <div class="lastContainer">
 
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js "></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js "></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
 
     <script type="text/javascript " src="../JS/firebase_config.js "></script>
 
     <script type="text/javascript " src="../JS/scripts.js "></script>
 
     <script>
-        // var starCountRef = firebase.database().ref('Users').child('68ROqo6MhMUQlr64jst1YTU5RcX2/email');
-        // starCountRef.on('value', (snapshot) => {
-        //     const data = snapshot.val();
-        //     console.log(data)
-        // });
+        function dispFile(contents) {
+            document.getElementById('chlm').innerHTML = contents
+        }
 
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                console.log(user);
+        function clickElem(elem) {
+            // Thx user1601638 on Stack Overflow (6/6/2018 - https://stackoverflow.com/questions/13405129/javascript-create-and-save-file )
+            var eventMouse = document.createEvent("MouseEvents")
+            eventMouse.initMouseEvent("click", false, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+
+            elem.dispatchEvent(eventMouse)
+        }
+
+        function openFile(func) {
+            readFile = function(e) {
+
+                var file = e.target.files[0];
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (user) {
+                        var ref = firebase.storage().ref();
+                        var storageRef = ref.child("Images/" + user.uid + "/product.jpg");
+                        storageRef.put(file).then((snapshot) => {
+                            console.log("File uploaded successfully");
+                        })
+                    }
+                });
+
+                console.log(file)
+                if (!file) {
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = function(e) {
+
+                    var contents = e.target.result;
+                    fileInput.func(contents)
+                    document.getElementById("plus").removeChild(fileInput)
+                }
+                reader.readAsText(file)
             }
-        });
+            fileInput = document.createElement("input")
+            fileInput.type = 'file'
+            fileInput.multiple = "true";
+            fileInput.style.display = 'none'
+            fileInput.onchange = readFile
+            fileInput.func = func
+            document.getElementById("plus").appendChild(fileInput)
+            clickElem(fileInput)
+        }
+
+
+
+        // var plus = document.getElementById("plus");
+        // var fileInput = document.createElement("input");
+        // fileInput.setAttribute("id", "fileInput");
+        // fileInput.type = "file";
+        // fileInput.style.display = "block";
+        // //fileInput.onchange = ;
+        // plus.appendChild(fileInput);
     </script>
 
 </body>

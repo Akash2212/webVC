@@ -183,18 +183,46 @@ nav {
     right: 5px;
 }
 
-#productsContainer {
-    position: relative;
+#products {
+    position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
-    margin-top: 60px;
+    margin-top: 55px;
+    display: flex;
+    width: 45%;
+    flex-direction: column;
     background-color: #777;
 }
 
+#chlm {
+    float: left;
+}
+
 #plus {
-    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: #2ca7e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+#plus div i input {
+    display: none;
+}
+
+#plus:hover {
+    transform: scale(1.1);
+}
+
+
+/* 
+#plus div {
     width: 50px;
     height: 50px;
     background: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), #2ca7e0;
@@ -202,11 +230,7 @@ nav {
     background-size: 50% 2px, 2px 50%;
     border-radius: 50%;
     background-repeat: no-repeat;
-    cursor: pointer;
-    position: absolute;
-    bottom: 0px;
-    z-index: -1;
-}
+} */
 
 #message {
     position: absolute;
@@ -282,8 +306,7 @@ nav {
 }
 
 .toolbar {
-    position: relative;
-    width: 100%;
+    width: 45%;
     height: 50px;
     margin-top: 60px;
     background-color: #2ca7e0;
@@ -291,6 +314,7 @@ nav {
     padding: 5px;
     display: flex;
     align-items: center;
+    position: fixed;
 }
 
 #backBtn {
@@ -303,22 +327,20 @@ nav {
     padding-left: 40px;
 }
 
-#footer {
-    position: absolute;
+.footer {
+    position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
     display: flex;
 }
 
 #messageInput {
-    width: 85%;
+    width: 45%;
     height: 20px;
     border-radius: 30px;
     padding: 5px;
     outline: none;
     border-width: 1px;
-    flex-grow: 2;
 }
 
 #sendIcon {
@@ -329,4 +351,26 @@ nav {
     bottom: 6px;
     color: #2ca7e0;
     cursor: pointer;
+}
+
+#center {
+    display: flex;
+    flex-direction: column;
+    background-color: #777;
+    margin-top: 130px;
+}
+
+#messageRight {
+    width: 100%;
+    float: right;
+    text-align: right;
+    padding: 3px;
+    background-color: green;
+}
+
+#messageLeft {
+    float: left;
+    text-align: left;
+    padding: 3px;
+    background-color: blue;
 }

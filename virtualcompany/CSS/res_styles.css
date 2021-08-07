@@ -1,0 +1,136 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #2ca7e0;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+#logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+#searchView {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#search {
+    position: fixed;
+    width: 45%;
+    height: 20px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 2px black;
+}
+
+#searchResView {
+    width: 45%;
+    height: auto;
+    background-color: blue;
+    margin-top: 100px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#searchResView:hover {
+    background-color: #777;
+}
+
+#settingsIcon {
+    position: absolute;
+    right: 10px;
+}
+
+#settingsIcon i {
+    font-size: 36px;
+    cursor: pointer;
+}
+
+@keyframes settingsRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#settingsIcon i:hover {
+    animation-name: settingsRotate;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+#searchResContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #777;
+    margin-top: 55px;
+}
+
+#options {
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: green;
+}
+
+#productsListContainer {
+    height: auto;
+    width: 80%;
+    float: right;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+}
+
+#product {
+    padding: 5px;
+    width: 200px;
+    background-color: white;
+}
+
+#product div {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+}
+
+#productImagesContainer {
+    display: flex;
+    background-color: #777;
+    overflow-x: auto;
+}
+
+.productImages {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+}
